@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# olympics
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of olympics is to ...
+
+## Installation
+
+You can install the development version of olympics from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("numbats/olympics")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(olympics)
+url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke"
+get_results(url)
+```
+
