@@ -7,29 +7,65 @@
 #'
 #' @examples
 #' url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke"
-#' get_results(url)
-get_results <- function(url){
-  
+#' get_single_results(url)
+get_single_results <- function(url){
+
   html <- httr::GET(url) %>% rvest::read_html()
-  
+
   rank <- html %>%
     rvest::html_elements(".styles__MedalWrapper-sc-rh9yz9-0") %>%
     rvest::html_text()
-  
+
   result <-  html %>%
     rvest::html_elements(".styles__Info-sc-cjoz4h-0") %>%
     rvest::html_text() %>%
     stringr::str_extract("\\d+\\.\\d+") %>% as.numeric() %>% stats::na.omit()
-  
+
   name <- html %>%
     rvest::html_elements(".styles__AthleteName-sc-1yhe77y-3") %>%
     rvest::html_text() %>%
     stringr::str_to_title()
-  
+
   country <- html %>%
     rvest::html_elements(".styles__CountryName-sc-1r5phm6-1") %>%
     rvest::html_text()
-  
-  tibble::tibble(country = country, name = name, result = result, rank = rank)
-  
+
+  if (length(country) == 0){
+    country <- html %>%
+      rvest::html_elements(".styles__CountryName-sc-rh9yz9-8") %>%
+      rvest::html_text()
+
+  }
+
+  res <- tibble::tibble(rank = rank, country = country, result = result)
+
+  if (length(name) != 0){
+    res <- res %>%
+      dplyr::mutate(name = name) %>%
+      dplyr::select(rank, country, name, result)
+  }
+
+  res
+
 }
+
+
+#' Title
+#'
+#' @param table the output from get_event
+#'
+#' @return a tibble of result summary
+#' @export
+#'
+#' @examples
+#' get_events(game = "tokyo-2020", sport = "swimming") %>% head(5) %>% get_results()
+get_results <- function(table){
+  table %>%
+    dplyr::mutate(url = glue::glue("https://olympics.com/en/olympic-games/{game}/results/{sport}/{slug}")) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate( results = list(get_single_results(url))) %>%
+    tidyr::unnest(results) %>%
+    dplyr::select(-c(slug:url))
+}
+
+#

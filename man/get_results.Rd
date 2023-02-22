@@ -4,10 +4,10 @@
 \alias{get_results}
 \title{Title}
 \usage{
-get_results(url)
+get_results(table)
 }
 \arguments{
-\item{url}{the url to event page in olympic.com, i.e. https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke}
+\item{table}{the output from get_event}
 }
 \value{
 a tibble of result summary
@@ -16,6 +16,5 @@ a tibble of result summary
 Title
 }
 \examples{
-url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke"
-get_results(url)
+get_events(game = "tokyo-2020", sport = "swimming") \%>\% head(5) \%>\% get_results()
 }
