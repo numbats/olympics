@@ -10,8 +10,16 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
 Imports: 
+    cli,
+    dplyr,
+    glue,
     httr,
+    jsonlite,
     magrittr,
     rvest,
     stringr,
-    tibble
+    tibble,
+    tidyr
+Depends: 
+    R (>= 2.10)
+LazyData: true
