@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 
 # olympics
 
+# olympics <a href=‘https://numbats.github.io/olympics/’><img src=‘man/figures/logo/sticker.png’ align=“right” height=“138.5" /></a>
+
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/numbats/olympics/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/numbats/olympics/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
@@ -41,7 +43,7 @@ The package extracts Olympic results in a sequential order:
 The tables in this pipeline can be wrangled to customise the extraction. For example, 
 
 ```{r example}
-library(olympics)
+  library(olympics)
 get_sports(game = "tokyo-2020") %>% 
   dplyr::filter(sport == "swimming") %>% 
   get_events() %>% 
@@ -49,6 +51,6 @@ get_sports(game = "tokyo-2020") %>%
   get_results()
 ```
 
-The full Tokyo 2020 results is available as built-in data in the package as `tokyo2020`, the same with `beijing2022`. Full results of 21st games are available at `summer_games` (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, Sydney 2000) and `winter_games` (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, Salt Lake City 2002).
+The full Tokyo 2020 results is available as built-in data in the package as `tokyo2020`, the same with `beijing2022`. Full results of 21st games are available at `summer_games` (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, and Sydney 2000) and `winter_games` (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, and Salt Lake City 2002).
 
 
