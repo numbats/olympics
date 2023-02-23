@@ -29,7 +29,8 @@ get_sports <- function(game){
     tibble::as_tibble() %>%
     dplyr::mutate(game = game) %>%
     dplyr::select(game, slug) %>%
-    dplyr::rename(sport = slug)
+    dplyr::rename(sport = slug) %>%
+    dplyr::arrange(sport)
 
 
   return(raw)
@@ -80,7 +81,8 @@ get_events <- function(table){
     dplyr::mutate(results = list(get_single_event(url))) %>%
     tidyr::unnest(results) %>%
     dplyr::select(game, sport, slug, gender) %>%
-    dplyr::rename(event = slug)
+    dplyr::rename(event = slug) %>%
+    dplyr::arrange(sport, event)
 
 }
 
