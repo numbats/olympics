@@ -65,3 +65,4 @@ get_events <- function(game, sport){
 
 }
 
+globalVariables(c(".", "title", "slug", "gender", "results", "olympic_game"))
