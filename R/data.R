@@ -34,3 +34,9 @@
 #' @examples
 #' summer_games
 "summer_games"
+
+#' Title
+#' @details TODO
+#' @examples
+#' winter_games
+"winter_games"
