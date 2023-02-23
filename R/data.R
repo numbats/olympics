@@ -9,3 +9,9 @@
 #' @examples
 #' tokyo_events
 "tokyo_events"
+
+#' Title
+#' @details TODO
+#' @examples
+#' tokyo2020
+"tokyo2020"
