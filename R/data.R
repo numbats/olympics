@@ -13,5 +13,17 @@
 #' Title
 #' @details TODO
 #' @examples
-#' tokyo_events
-"medals"
+#' tokyo2020
+"tokyo2020"
+
+#' Title
+#' @details TODO
+#' @examples
+#' beijing_events
+"beijing_events"
+
+#' Title
+#' @details TODO
+#' @examples
+#' beijing2022
+"beijing2022"

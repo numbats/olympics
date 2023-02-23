@@ -46,7 +46,7 @@ get_single_result <- function(url){
   res <- res %>% dplyr::mutate(result = c(result, rep(NA, nrow(res) - length(result))))
 
   # correction if events are played by paired player
-  if (stringr::str_detect(url, "synchronised|team|double|doubles") & (length(name) != 0)){
+  if (stringr::str_detect(url, "synchronised|team|double|doubles|fx|470|mixed|49er|pair|beach-volleyball|2-man|2-woman") & (length(name) != 0)){
     name <- tibble(orig = name) %>%
       mutate(id = rep(1:nrow(res), each = 2)) %>%
       tidyr::nest(nested = orig) %>%
