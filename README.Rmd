@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/numbats/olympics/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/numbats/olympics/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of olympics is to ...
+The `olympics` package provides an interface to scrape Olympic data from https://olympics.com/. 
 
 ## Installation
 
@@ -32,11 +32,23 @@ devtools::install_github("numbats/olympics")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The package extracts Olympic results in a sequential order:  
+  
+  - a *game* slug (i.e. tokyo-2020) can be passed into `get_sports()` to find the available *sports* in the *game*, 
+  - the resulting *sport* table can then be passed into `get_events()` to find the *events* under each *sport*, 
+  - the *event* table can then be passed into `get_results()` to find the event results.
+
+The tables in this pipeline can be wrangled to customise the extraction. For example, 
 
 ```{r example}
 library(olympics)
-url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke"
-get_results(url)
+get_sports(game = "tokyo-2020") %>% 
+  dplyr::filter(sport == "swimming") %>% 
+  get_events() %>% 
+  head(1) %>% 
+  get_results()
 ```
+
+The full Tokyo 2020 results is available as built-in data in the package as `tokyo2020`, the same with `beijing2022`. Full results of 21st games are available at `summer_games` (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, Sydney 2000) and `winter_games` (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, Salt Lake City 2002).
+
 
