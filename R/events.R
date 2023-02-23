@@ -28,8 +28,9 @@ get_sports <- function(game){
     .[["props"]] %>% .[["pageProps"]] %>% .[["allDisciplines"]] %>%
     tibble::as_tibble() %>%
     dplyr::mutate(game = game) %>%
-    dplyr::select(game, title, slug) %>%
-    dplyr::rename(sport = title)
+    dplyr::select(game, slug) %>%
+    dplyr::rename(sport = slug)
+
 
   return(raw)
 
@@ -38,17 +39,14 @@ get_sports <- function(game){
 
 #' Title
 #'
-#' @param game the olympic game, in the format of tokyo-2020, see the slug column in olympic_game
-#' @param sport the sport, see the slug column from get_sports()
+#' @param url the URL to the event
 #'
 #' @return a tibble of event summary
 #' @export
 #'
 #' @examples
-#' get_events(game = "tokyo-2020", sport = "swimming")
-get_events <- function(game, sport){
-
-  url <- glue::glue("https://olympics.com/en/olympic-games/", game, "/results/", sport)
+#'get_single_event("https://olympics.com/en/olympic-games/tokyo-2020/results/shooting")
+get_single_event <- function(url){
 
   raw <- httr::GET(url) |>
     rvest::read_html() %>%
@@ -56,13 +54,35 @@ get_events <- function(game, sport){
     rvest::html_text() %>%
     jsonlite::fromJSON() %>%
     .[["props"]] %>% .[["pageProps"]] %>% .[["allEvents"]] %>%
-    tibble::as_tibble() %>%
-    dplyr::mutate(game = game, sport = sport) %>%
-    dplyr::select(game, sport, title, slug, gender) %>%
-    dplyr::rename(event = title)
+    tibble::as_tibble()
+    # dplyr::mutate(game = game, sport = sport) %>%
+    # dplyr::select(game, sport, title, slug, gender) %>%
+    # dplyr::rename(event = title)
 
   return(raw)
 
 }
 
-globalVariables(c(".", "title", "slug", "gender", "results", "olympic_game"))
+
+#' Title
+#'
+#' @param table a table from get_sports()
+#'
+#' @return a tibble of event summary
+#' @export
+#'
+#' @examples
+#' get_sports(game = "tokyo-2020") %>% head(1) %>% get_events()
+get_events <- function(table){
+  table %>%
+    dplyr::mutate(url = glue::glue("https://olympics.com/en/olympic-games/{game}/results/{sport}")) %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(results = list(get_single_event(url))) %>%
+    tidyr::unnest(results) %>%
+    dplyr::select(game, sport, slug, gender) %>%
+    dplyr::rename(event = slug)
+
+}
+
+globalVariables(c(".", "title", "slug", "gender", "results", "olympic_game",
+                  "game", "sport", "event", "result", "orig", "nested"))

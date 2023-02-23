@@ -6,9 +6,8 @@
 #' @export
 #'
 #' @examples
-#' url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/men-s-100m-breaststroke"
-#' get_single_results(url)
-get_single_results <- function(url){
+#' get_single_result("https://olympics.com/en/olympic-games/tokyo-2020/results/shooting/skeet-men")
+get_single_result <- function(url){
 
   html <- httr::GET(url) %>% rvest::read_html()
 
@@ -57,7 +56,6 @@ get_single_results <- function(url){
     }
   if (length(name) != 0){
 
-
     res <- res %>%
       dplyr::mutate(name = name) %>%
       dplyr::select(rank, country, name, result)
@@ -76,14 +74,14 @@ get_single_results <- function(url){
 #' @export
 #'
 #' @examples
-#' get_events(game = "tokyo-2020", sport = "swimming") %>% head(5) %>% get_results()
+#' get_sports(game = "tokyo-2020") %>% head(1) %>% get_events() %>% head(1) %>% get_results()
 get_results <- function(table){
   table %>%
-    dplyr::mutate(url = glue::glue("https://olympics.com/en/olympic-games/{game}/results/{sport}/{slug}")) %>%
+    dplyr::mutate(url = glue::glue("https://olympics.com/en/olympic-games/{game}/results/{sport}/{event}")) %>%
     dplyr::rowwise() %>%
-    dplyr::mutate( results = list(get_single_results(url))) %>%
+    dplyr::mutate( results = list(get_single_result(url))) %>%
     tidyr::unnest(results) %>%
-    dplyr::select(-c(slug:url))
+    dplyr::select(game, sport, event, rank:result)
 }
 
 #

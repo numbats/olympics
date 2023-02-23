@@ -16,5 +16,5 @@ a tibble of result summary
 Title
 }
 \examples{
-get_events(game = "tokyo-2020", sport = "swimming") \%>\% head(5) \%>\% get_results()
+get_sports(game = "tokyo-2020") \%>\% head(1) \%>\% get_events() \%>\% head(1) \%>\% get_results()
 }
