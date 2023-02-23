@@ -91,4 +91,4 @@ get_results <- function(table){
     dplyr::select(game, sport, event, rank:result)
 }
 
-#
+

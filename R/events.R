@@ -20,7 +20,7 @@ get_sports <- function(game){
   }
 
 
-  raw <- httr::GET(url) |>
+  raw <- httr::GET(url) %>%
     rvest::read_html() %>%
     html_elements("#__NEXT_DATA__") %>%
     rvest::html_text() %>%
@@ -49,7 +49,7 @@ get_sports <- function(game){
 #'get_single_event("https://olympics.com/en/olympic-games/tokyo-2020/results/shooting")
 get_single_event <- function(url){
 
-  raw <- httr::GET(url) |>
+  raw <- httr::GET(url) %>%
     rvest::read_html() %>%
     html_elements("#__NEXT_DATA__") %>%
     rvest::html_text() %>%
