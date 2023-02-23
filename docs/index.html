@@ -62,15 +62,10 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
 <div class="section level1">
-<div class="page-header"><h1 id="olympics">olympics<a class="anchor" aria-label="anchor" href="#olympics"></a>
-</h1></div>
-</div>
-<div class="section level1">
-<h1 id="olympics-">olympics <a href="%E2%80%98https://numbats.github.io/olympics/%E2%80%99" class="external-link"><img src="%E2%80%98man/figures/logo/sticker.png%E2%80%99" align="“right”" height='“138.5"'></a>
+<div class="page-header"><h1 id="olympics-">olympics <a href="%E2%80%98https://numbats.github.io/olympics/%E2%80%99" class="external-link"><img src="%E2%80%98man/figures/logo.png%E2%80%99" align="“right”" height='“138.5"'></a>
 <a class="anchor" aria-label="anchor" href="#olympics-"></a>
-</h1>
+</h1></div>
 <!-- badges: start -->
 
 <p>The <code>olympics</code> package provides an interface to scrape Olympic data from <a href="https://olympics.com/" class="external-link uri">https://olympics.com/</a>.</p>
@@ -99,6 +94,31 @@
 <span>  <span class="fu"><a href="reference/get_events.html">get_events</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="reference/get_results.html">get_results</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Called from: get_sports(game = "tokyo-2020")</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#13: season &lt;- olympic_game %&gt;% dplyr::filter(slug == game) %&gt;% dplyr::pull(season)</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#15: if (season == "Winter") {</span></span>
+<span><span class="co">#&gt;     url &lt;- glue::glue("https://olympics.com/en/olympic-games/", </span></span>
+<span><span class="co">#&gt;         game, "/results/snowboard")</span></span>
+<span><span class="co">#&gt; } else if (season == "Summer") {</span></span>
+<span><span class="co">#&gt;     url &lt;- glue::glue("https://olympics.com/en/olympic-games/", </span></span>
+<span><span class="co">#&gt;         game, "/results/swimming")</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     cli::cli_abort("game not found, please use the slug as shown in {.data olympic_game}")</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#15: if (season == "Summer") {</span></span>
+<span><span class="co">#&gt;     url &lt;- glue::glue("https://olympics.com/en/olympic-games/", </span></span>
+<span><span class="co">#&gt;         game, "/results/swimming")</span></span>
+<span><span class="co">#&gt; } else {</span></span>
+<span><span class="co">#&gt;     cli::cli_abort("game not found, please use the slug as shown in {.data olympic_game}")</span></span>
+<span><span class="co">#&gt; }</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#18: url &lt;- glue::glue("https://olympics.com/en/olympic-games/", game, </span></span>
+<span><span class="co">#&gt;     "/results/swimming")</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#24: raw &lt;- rvest::read_html(httr::GET(url)) %&gt;% html_elements("#__NEXT_DATA__") %&gt;% </span></span>
+<span><span class="co">#&gt;     rvest::html_text() %&gt;% jsonlite::fromJSON() %&gt;% .[["props"]] %&gt;% </span></span>
+<span><span class="co">#&gt;     .[["pageProps"]] %&gt;% .[["allDisciplines"]] %&gt;% tibble::as_tibble() %&gt;% </span></span>
+<span><span class="co">#&gt;     dplyr::mutate(game = game) %&gt;% dplyr::select(game, slug) %&gt;% </span></span>
+<span><span class="co">#&gt;     dplyr::rename(sport = slug) %&gt;% dplyr::arrange(sport)</span></span>
+<span><span class="co">#&gt; debug at /Users/hzha400/Documents/research/olympics/R/events.R#37: return(raw)</span></span>
 <span><span class="co">#&gt; # A tibble: 8 × 7</span></span>
 <span><span class="co">#&gt;   game       sport    event                 rank  team  name              result</span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;</span></span>
@@ -113,7 +133,6 @@
 <p>The full Tokyo 2020 results is available as built-in data in the package as <code>tokyo2020</code>, the same with <code>beijing2022</code>. Full results of 21st games are available at <code>summer_games</code> (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, and Sydney 2000) and <code>winter_games</code> (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, and Salt Lake City 2002).</p>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -158,7 +177,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

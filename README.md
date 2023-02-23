@@ -1,9 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# olympics
-
-# olympics <a href=‘https://numbats.github.io/olympics/’><img src=‘man/figures/logo/sticker.png’ align=“right” height=“138.5" /></a>
+# olympics <a href=‘https://numbats.github.io/olympics/’><img src=‘man/figures/logo.png’ align=“right” height=“138.5" /></a>
 
 <!-- badges: start -->
 
@@ -27,12 +25,12 @@ devtools::install_github("numbats/olympics")
 
 The package extracts Olympic results in a sequential order:
 
-- a *game* slug (i.e. tokyo-2020) can be passed into `get_sports()` to
-  find the available *sports* in the *game*,
-- the resulting *sport* table can then be passed into `get_events()` to
-  find the *events* under each *sport*,
-- the *event* table can then be passed into `get_results()` to find the
-  event results.
+-   a *game* slug (i.e. tokyo-2020) can be passed into `get_sports()` to
+    find the available *sports* in the *game*,
+-   the resulting *sport* table can then be passed into `get_events()`
+    to find the *events* under each *sport*,
+-   the *event* table can then be passed into `get_results()` to find
+    the event results.
 
 The tables in this pipeline can be wrangled to customise the extraction.
 For example,
@@ -44,6 +42,31 @@ get_sports(game = "tokyo-2020") %>%
   get_events() %>% 
   head(1) %>% 
   get_results()
+#> Called from: get_sports(game = "tokyo-2020")
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#13: season <- olympic_game %>% dplyr::filter(slug == game) %>% dplyr::pull(season)
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#15: if (season == "Winter") {
+#>     url <- glue::glue("https://olympics.com/en/olympic-games/", 
+#>         game, "/results/snowboard")
+#> } else if (season == "Summer") {
+#>     url <- glue::glue("https://olympics.com/en/olympic-games/", 
+#>         game, "/results/swimming")
+#> } else {
+#>     cli::cli_abort("game not found, please use the slug as shown in {.data olympic_game}")
+#> }
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#15: if (season == "Summer") {
+#>     url <- glue::glue("https://olympics.com/en/olympic-games/", 
+#>         game, "/results/swimming")
+#> } else {
+#>     cli::cli_abort("game not found, please use the slug as shown in {.data olympic_game}")
+#> }
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#18: url <- glue::glue("https://olympics.com/en/olympic-games/", game, 
+#>     "/results/swimming")
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#24: raw <- rvest::read_html(httr::GET(url)) %>% html_elements("#__NEXT_DATA__") %>% 
+#>     rvest::html_text() %>% jsonlite::fromJSON() %>% .[["props"]] %>% 
+#>     .[["pageProps"]] %>% .[["allDisciplines"]] %>% tibble::as_tibble() %>% 
+#>     dplyr::mutate(game = game) %>% dplyr::select(game, slug) %>% 
+#>     dplyr::rename(sport = slug) %>% dplyr::arrange(sport)
+#> debug at /Users/hzha400/Documents/research/olympics/R/events.R#37: return(raw)
 #> # A tibble: 8 × 7
 #>   game       sport    event                 rank  team  name              result
 #>   <chr>      <chr>    <chr>                 <chr> <chr> <chr>              <dbl>
