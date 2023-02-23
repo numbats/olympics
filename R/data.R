@@ -9,3 +9,9 @@
 #' @examples
 #' tokyo_events
 "tokyo_events"
+
+#' Title
+#' @details TODO
+#' @examples
+#' tokyo_events
+"medals"

@@ -6,12 +6,15 @@
 #' @export
 #'
 #' @examples
-#' get_medal(game = "tokyo-2020")
+#' get_medals(game = "tokyo-2020")
 get_medals <- function(game){
   if (game %in% dplyr::pull(olympic_game, slug)){
     url <- glue::glue("https://olympics.com/en/olympic-games/", game, "/medals")
   } else{
     cli::cli_abort("game not found, please use the slug as shown in {.data olympic_game}")
+  }
+  if (stringr::str_sub(game, -4, -1) <= 1904){
+    cli::cli_abort("medal tables for games in 1904 and before 1904 are not available")
   }
   
   html <- httr::GET(url) %>% rvest::read_html()
