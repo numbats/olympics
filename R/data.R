@@ -4,11 +4,6 @@
 #' olympic_game
 "olympic_game"
 
-#' Title
-#' @details TODO
-#' @examples
-#' tokyo_events
-"tokyo_events"
 
 #' Title
 #' @details TODO
@@ -19,8 +14,8 @@
 #' Title
 #' @details TODO
 #' @examples
-#' beijing_events
-"beijing_events"
+#' medals
+"medals"
 
 #' Title
 #' @details TODO

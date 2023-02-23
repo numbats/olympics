@@ -1,0 +1,23 @@
+url: https://rjournal.github.io/rj/
+
+template:
+  params:
+    bootswatch: cosmo
+
+reference:
+- title: Built-in data
+  contents:
+  - olympic_game
+  - tokyo2020
+  - beijing2022
+  - summer_games
+  - winter_games
+  - medals
+- title: Pipeline to scrape olympic data
+  contents:
+  - get_sports
+  - get_single_event
+  - get_events
+  - get_single_result
+  - get_results
+  - get_medals

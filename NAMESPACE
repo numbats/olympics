@@ -2,6 +2,7 @@
 
 export("%>%")
 export(get_events)
+export(get_medals)
 export(get_results)
 export(get_single_event)
 export(get_single_result)
