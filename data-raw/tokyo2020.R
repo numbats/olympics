@@ -4,3 +4,5 @@ tokyo2020 <- tokyo_events %>% get_results()
 
 usethis::use_data(tokyo_events, overwrite = TRUE)
 usethis::use_data(tokyo2020, overwrite = TRUE)
+
+
