@@ -31,17 +31,17 @@ get_single_result <- function(url){
       rvest::html_text()
   }
 
-  country <- html %>%
+  team <- html %>%
     rvest::html_elements(".styles__CountryName-sc-1r5phm6-1") %>%
     rvest::html_text()
 
-  if (length(country) == 0){
-    country <- html %>%
+  if (length(team) == 0){
+    team <- html %>%
       rvest::html_elements(".styles__CountryName-sc-rh9yz9-8") %>%
       rvest::html_text()
   }
 
-  res <- tibble::tibble(rank = rank, country = country)
+  res <- tibble::tibble(rank = rank, team = team)
 
   res <- res %>% dplyr::mutate(result = c(result, rep(NA, nrow(res) - length(result))))
 
@@ -58,7 +58,7 @@ get_single_result <- function(url){
 
     res <- res %>%
       dplyr::mutate(name = name) %>%
-      dplyr::select(rank, country, name, result)
+      dplyr::select(rank, team, name, result)
   }
 
   res
