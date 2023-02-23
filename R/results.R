@@ -46,13 +46,18 @@ get_single_result <- function(url){
   res <- res %>% dplyr::mutate(result = c(result, rep(NA, nrow(res) - length(result))))
 
   # correction if events are played by paired player
-  if (stringr::str_detect(url, "synchronised|team|double|doubles|fx|470|mixed|49er|pair|beach-volleyball|2-man|2-woman") & (length(name) != 0)){
-    name <- tibble(orig = name) %>%
-      mutate(id = rep(1:nrow(res), each = 2)) %>%
-      tidyr::nest(nested = orig) %>%
-      mutate(name = purrr::map(nested, ~dplyr::pull(.x) %>% paste0(collapse = "/ "))) %>%
-      tidyr::unnest(name) %>%
-      dplyr::pull(name)
+  if (stringr::str_detect(url, "synchronised|synchronized|team|double|doubles|fx|470|mixed|49er|pair|beach-volleyball|2-man|2-woman|keelboat") & (length(name) != 0)){
+
+    if (stringr::str_detect(url, "double-trap|individual-mixed|dinghy-mixed|open-laser-mixed")){
+      name <- name # no need if double-trap-150-targets-men
+    } else{
+      name <- tibble(orig = name) %>%
+        mutate(id = rep(1:nrow(res), each = 2)) %>%
+        tidyr::nest(nested = orig) %>%
+        mutate(name = purrr::map(nested, ~dplyr::pull(.x) %>% paste0(collapse = "/ "))) %>%
+        tidyr::unnest(name) %>%
+        dplyr::pull(name)
+    }
     }
   if (length(name) != 0){
 

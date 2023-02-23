@@ -27,3 +27,10 @@
 #' @examples
 #' beijing2022
 "beijing2022"
+
+
+#' Title
+#' @details TODO
+#' @examples
+#' summer_games
+"summer_games"
