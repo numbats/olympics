@@ -82,7 +82,7 @@ get_events <- function(table){
     tidyr::unnest(results) %>%
     dplyr::select(game, sport, slug, gender) %>%
     dplyr::rename(event = slug) %>%
-    dplyr::arrange(sport, event)
+    dplyr::arrange(sport, desc(event))
 
 }
 
