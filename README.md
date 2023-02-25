@@ -36,23 +36,23 @@ The tables in this pipeline can be wrangled to customise the extraction.
 For example,
 
 ``` r
-  library(olympics)
+library(olympics)
 get_sports(game = "tokyo-2020") %>% 
   dplyr::filter(sport == "swimming") %>% 
   get_events() %>% 
   head(1) %>% 
   get_results()
 #> # A tibble: 8 × 7
-#>   game       sport    event                 rank  team  name              result
-#>   <chr>      <chr>    <chr>                 <chr> <chr> <chr>              <dbl>
-#> 1 tokyo-2020 swimming men-s-100m-backstroke G     ROC   Evgeny Rylov        52.0
-#> 2 tokyo-2020 swimming men-s-100m-backstroke S     ROC   Kliment Kolesnik…   52  
-#> 3 tokyo-2020 swimming men-s-100m-backstroke B     USA   Ryan Murphy         52.2
-#> 4 tokyo-2020 swimming men-s-100m-backstroke 4     ITA   Thomas Ceccon       52.3
-#> 5 tokyo-2020 swimming men-s-100m-backstroke 5     CHN   Jiayu Xu            52.5
-#> 6 tokyo-2020 swimming men-s-100m-backstroke 6     ESP   Hugo Gonzalez De…   52.8
-#> 7 tokyo-2020 swimming men-s-100m-backstroke 7     AUS   Mitchell Larkin     52.8
-#> 8 tokyo-2020 swimming men-s-100m-backstroke 8     ROU   Robert Glinta       53.0
+#>   game       sport    event                  rank  team  name             result
+#>   <chr>      <chr>    <chr>                  <chr> <chr> <chr>            <chr> 
+#> 1 tokyo-2020 swimming women-s-800m-freestyle G     USA   Katie Ledecky    8:12.…
+#> 2 tokyo-2020 swimming women-s-800m-freestyle S     AUS   Ariarne Titmus   8:13.…
+#> 3 tokyo-2020 swimming women-s-800m-freestyle B     ITA   Simona Quadarel… 8:18.…
+#> 4 tokyo-2020 swimming women-s-800m-freestyle 4     USA   Katie Grimes     8:19.…
+#> 5 tokyo-2020 swimming women-s-800m-freestyle 5     CHN   Jianjiahe Wang   8:21.…
+#> 6 tokyo-2020 swimming women-s-800m-freestyle 6     AUS   Kiah Melverton   8:22.…
+#> 7 tokyo-2020 swimming women-s-800m-freestyle 7     GER   Sarah Kohler     8:24.…
+#> 8 tokyo-2020 swimming women-s-800m-freestyle 8     ROC   Anastasiia Kirp… 8:26.…
 ```
 
 The full Tokyo 2020 results is available as built-in data in the package

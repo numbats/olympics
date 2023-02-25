@@ -1,37 +1,48 @@
-#' Title
+#' Built-in data
 #' @details TODO
+#' @rdname data
 #' @examples
-#' olympic_game
+#' # slug for the recent 5 summer games
+#' olympic_game %>% dplyr::filter(season == "Summer") %>% dplyr::pull(slug) %>% head(5)
 "olympic_game"
 
-
-#' Title
-#' @details TODO
+#' @rdname data
 #' @examples
-#' tokyo2020
+#'
+#'
+#' # Female single swimmer leaderboard
+#' tokyo2020 %>%
+#'  dplyr::filter(sport == "swimming",
+#'               stringr::str_detect(event, "women"),
+#'               !is.na(name),
+#'               rank %in% c("G", "S", "B")) %>%
+#'   dplyr::count(name, rank) %>%
+#'   tidyr::pivot_wider(names_from = "rank", values_from = "n", values_fill = 0) %>%
+#'   dplyr::select(name, G, S, B) %>%
+#'   dplyr::arrange(desc(G), desc(S), desc(B))
 "tokyo2020"
 
-#' Title
-#' @details TODO
+#' @rdname data
 #' @examples
-#' medals
+#'
+#' # medal board from ...
+#' unique(medals$game) %>% stringr::str_extract("\\d+") %>% min()
 "medals"
 
-#' Title
-#' @details TODO
+#' @rdname data
 #' @examples
-#' beijing2022
+#'
+#' # Beijing winter olympic sports:
+#' unique(beijing2022$sport)
 "beijing2022"
 
-
-#' Title
-#' @details TODO
+#' @rdname data
 #' @examples
-#' summer_games
+#'
+#' # how many events are played in each summer/ winter game
+#' summer_games %>% tidyr::nest(rank:result) %>% dplyr::count(game, sort = TRUE)
+#' winter_games %>% tidyr::nest(rank:result) %>% dplyr::count(game, sort = TRUE)
 "summer_games"
 
-#' Title
-#' @details TODO
-#' @examples
-#' winter_games
+#' @rdname data
 "winter_games"

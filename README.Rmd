@@ -41,7 +41,7 @@ The package extracts Olympic results in a sequential order:
 The tables in this pipeline can be wrangled to customise the extraction. For example, 
 
 ```{r example}
-  library(olympics)
+library(olympics)
 get_sports(game = "tokyo-2020") %>% 
   dplyr::filter(sport == "swimming") %>% 
   get_events() %>% 
