@@ -91,7 +91,6 @@ get_events <- function(table){
 #' get_single_result("https://olympics.com/en/olympic-games/tokyo-2020/results/swimming")
 #' get_sports(game = "tokyo-2020") %>% head(1) %>% get_events() %>% head(1) %>% get_results()
 get_single_result <- function(url){
-#browser()
 
   html <- httr::GET(url) %>% rvest::read_html()
 
@@ -101,9 +100,9 @@ get_single_result <- function(url){
 
   result <-  html %>%
     rvest::html_elements(".styles__Info-sc-cjoz4h-0") %>%
+    #rvest::html_elements(".styles__AthleteName-sc-1yhe77y-3") %>%
     rvest::html_text() %>%
     stringr::str_remove("Results:")
-
 
   result <- result[1:length(result) %%2 == 1]
 
@@ -128,9 +127,12 @@ get_single_result <- function(url){
       rvest::html_text()
   }
 
-  res <- tibble::tibble(rank = rank, team = team)
+  if (length(rank) ==0 && length(team) == 0 && all(is.na(result)) && length(name) ==0){
+    return(tibble(rank, team, name, result))
+  }
 
-  res <- res %>% dplyr::mutate(result = c(result, rep(NA, nrow(res) - length(result))))
+  res <- tibble::tibble(rank = rank, team = team) %>%
+    dplyr::mutate(result = c(result, rep(NA, length(rank) - length(result))))
 
   # correction if events are played by paired player
   paired_string <- "synchronised|synchronized|team|double|doubles|fx|470|mixed|49er|pair|beach-volleyball|2-man|2-woman|keelboat|two-woman|two-man"
@@ -162,6 +164,7 @@ get_single_result <- function(url){
 #' @export
 #' @rdname scrape
 get_results <- function(table){
+
   table %>%
     dplyr::mutate(url = glue::glue("https://olympics.com/en/olympic-games/{game}/results/{sport}/{event}")) %>%
     dplyr::rowwise() %>%
