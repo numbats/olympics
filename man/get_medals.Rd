@@ -2,18 +2,18 @@
 % Please edit documentation in R/medals.R
 \name{get_medals}
 \alias{get_medals}
-\title{Scrape olympic medal board}
+\title{Scrape Olympic medal board}
 \usage{
 get_medals(game)
 }
 \arguments{
-\item{game}{the olympic game, in the format of tokyo-2020, see the slug column in the built-in olympic_game data}
+\item{game}{the Olympic game, in the format of tokyo-2020, see the slug column in the built-in olympic_game data}
 }
 \value{
 a tibble of medal table
 }
 \description{
-Scrape olympic medal board
+Scrape Olympic medal board
 }
 \examples{
 get_medals(game = "tokyo-2020")

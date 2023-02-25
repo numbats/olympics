@@ -1,10 +1,13 @@
 Package: olympics
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Title: Olympic data from olympic.com
+Version: 0.0.1
+Authors@R: c(
+    person("Shery", "Zhang", email = "huize.zhang@monash.edu", role = c("aut","cre")),
+    person("Xiaoqian", "Wang", email = "Xiaoqian.Wang@monash.edu", role = c("aut")),
+    person("Nuwani", "Palihawadana", email = "Nuwani.KodikaraPalihawadana@monash.edu", role = c("aut")),
+    person("Jayani", "Lakshika", email = "Jayani.PiyadiGamage@monash.edu", role = c("aut"))
+  )
+Description: An interface to scrape olympic results from olympic.com and built-in data of 21st century summer and winter game results.  
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

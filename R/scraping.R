@@ -88,7 +88,8 @@ get_events <- function(table){
 #' @examples
 #'
 #' # event results from URL or event table
-#' get_single_result("https://olympics.com/en/olympic-games/tokyo-2020/results/swimming")
+#' url <- "https://olympics.com/en/olympic-games/tokyo-2020/results/swimming/women-s-800m-freestyle"
+#' get_single_result(url)
 #' get_sports(game = "tokyo-2020") %>% head(1) %>% get_events() %>% head(1) %>% get_results()
 get_single_result <- function(url){
 

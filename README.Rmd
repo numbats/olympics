@@ -52,3 +52,6 @@ get_sports(game = "tokyo-2020") %>%
 The full Tokyo 2020 results is available as built-in data in the package as `tokyo2020`, the same with `beijing2022`. Full results of 21st games are available at `summer_games` (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, and Sydney 2000) and `winter_games` (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, and Salt Lake City 2002).
 
 
+# Acknowledgement
+
+The project is proposed by Rob Hyndman and Mitch O'Hara-Wild during Monash Numbat Hackathon: https://github.com/numbats/numbathackathon/issues/25.

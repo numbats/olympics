@@ -5,14 +5,20 @@
 \alias{olympics-package}
 \alias{_PACKAGE}
 \alias{olympic-package}
-\title{olympics: What the Package Does (One Line, Title Case)}
+\title{olympics: Olympic data from olympic.com}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-What the package does (one paragraph).
+An interface to scrape olympic results from olympic.com and built-in data of 21st century summer and winter game results.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Shery Zhang \email{huize.zhang@monash.edu}
+
+Authors:
+\itemize{
+  \item Xiaoqian Wang \email{Xiaoqian.Wang@monash.edu}
+  \item Nuwani Palihawadana \email{Nuwani.KodikaraPalihawadana@monash.edu}
+}
 
 }
 \keyword{internal}

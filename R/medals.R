@@ -1,6 +1,6 @@
-#' Scrape olympic medal board
+#' Scrape Olympic medal board
 #'
-#' @param game the olympic game, in the format of tokyo-2020, see the slug column in the built-in olympic_game data
+#' @param game the Olympic game, in the format of tokyo-2020, see the slug column in the built-in olympic_game data
 #'
 #' @return a tibble of medal table
 #' @export
