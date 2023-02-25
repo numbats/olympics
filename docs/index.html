@@ -82,29 +82,29 @@
 </h2>
 <p>The package extracts Olympic results in a sequential order:</p>
 <ul>
-<li>a <em>game</em> slug (i.e. tokyo-2020) can be passed into <code><a href="reference/get_sports.html">get_sports()</a></code> to find the available <em>sports</em> in the <em>game</em>,</li>
-<li>the resulting <em>sport</em> table can then be passed into <code><a href="reference/get_events.html">get_events()</a></code> to find the <em>events</em> under each <em>sport</em>,</li>
-<li>the <em>event</em> table can then be passed into <code><a href="reference/get_results.html">get_results()</a></code> to find the event results.</li>
+<li>a <em>game</em> slug (i.e. tokyo-2020) can be passed into <code><a href="reference/scrape.html">get_sports()</a></code> to find the available <em>sports</em> in the <em>game</em>,</li>
+<li>the resulting <em>sport</em> table can then be passed into <code><a href="reference/scrape.html">get_events()</a></code> to find the <em>events</em> under each <em>sport</em>,</li>
+<li>the <em>event</em> table can then be passed into <code><a href="reference/scrape.html">get_results()</a></code> to find the event results.</li>
 </ul>
 <p>The tables in this pipeline can be wrangled to customise the extraction. For example,</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">olympics</span><span class="op">)</span></span>
-<span><span class="fu"><a href="reference/get_sports.html">get_sports</a></span><span class="op">(</span>game <span class="op">=</span> <span class="st">"tokyo-2020"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">olympics</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/scrape.html">get_sports</a></span><span class="op">(</span>game <span class="op">=</span> <span class="st">"tokyo-2020"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sport</span> <span class="op">==</span> <span class="st">"swimming"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="reference/get_events.html">get_events</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="reference/scrape.html">get_events</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="reference/get_results.html">get_results</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="reference/scrape.html">get_results</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 8 × 7</span></span>
-<span><span class="co">#&gt;   game       sport    event                 rank  team  name              result</span></span>
-<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;</span></span>
-<span><span class="co">#&gt; 1 tokyo-2020 swimming men-s-100m-backstroke G     ROC   Evgeny Rylov        52.0</span></span>
-<span><span class="co">#&gt; 2 tokyo-2020 swimming men-s-100m-backstroke S     ROC   Kliment Kolesnik…   52  </span></span>
-<span><span class="co">#&gt; 3 tokyo-2020 swimming men-s-100m-backstroke B     USA   Ryan Murphy         52.2</span></span>
-<span><span class="co">#&gt; 4 tokyo-2020 swimming men-s-100m-backstroke 4     ITA   Thomas Ceccon       52.3</span></span>
-<span><span class="co">#&gt; 5 tokyo-2020 swimming men-s-100m-backstroke 5     CHN   Jiayu Xu            52.5</span></span>
-<span><span class="co">#&gt; 6 tokyo-2020 swimming men-s-100m-backstroke 6     ESP   Hugo Gonzalez De…   52.8</span></span>
-<span><span class="co">#&gt; 7 tokyo-2020 swimming men-s-100m-backstroke 7     AUS   Mitchell Larkin     52.8</span></span>
-<span><span class="co">#&gt; 8 tokyo-2020 swimming men-s-100m-backstroke 8     ROU   Robert Glinta       53.0</span></span></code></pre></div>
+<span><span class="co">#&gt;   game       sport    event                  rank  team  name             result</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;                  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt; </span></span>
+<span><span class="co">#&gt; 1 tokyo-2020 swimming women-s-800m-freestyle G     USA   Katie Ledecky    8:12.…</span></span>
+<span><span class="co">#&gt; 2 tokyo-2020 swimming women-s-800m-freestyle S     AUS   Ariarne Titmus   8:13.…</span></span>
+<span><span class="co">#&gt; 3 tokyo-2020 swimming women-s-800m-freestyle B     ITA   Simona Quadarel… 8:18.…</span></span>
+<span><span class="co">#&gt; 4 tokyo-2020 swimming women-s-800m-freestyle 4     USA   Katie Grimes     8:19.…</span></span>
+<span><span class="co">#&gt; 5 tokyo-2020 swimming women-s-800m-freestyle 5     CHN   Jianjiahe Wang   8:21.…</span></span>
+<span><span class="co">#&gt; 6 tokyo-2020 swimming women-s-800m-freestyle 6     AUS   Kiah Melverton   8:22.…</span></span>
+<span><span class="co">#&gt; 7 tokyo-2020 swimming women-s-800m-freestyle 7     GER   Sarah Kohler     8:24.…</span></span>
+<span><span class="co">#&gt; 8 tokyo-2020 swimming women-s-800m-freestyle 8     ROC   Anastasiia Kirp… 8:26.…</span></span></code></pre></div>
 <p>The full Tokyo 2020 results is available as built-in data in the package as <code>tokyo2020</code>, the same with <code>beijing2022</code>. Full results of 21st games are available at <code>summer_games</code> (Tokyo 2020, Rio 2016, London 2012, Beijing 2008, Athens 2004, and Sydney 2000) and <code>winter_games</code> (Beijing 2022, Pyeongchang 2018, Sochi 2014, Vancouver 2010, Turin 2006, and Salt Lake City 2002).</p>
 </div>
 </div>

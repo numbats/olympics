@@ -22,6 +22,9 @@
     <loc>https://rjournal.github.io/rj/reference/beijing_events.html</loc>
   </url>
   <url>
+    <loc>https://rjournal.github.io/rj/reference/data.html</loc>
+  </url>
+  <url>
     <loc>https://rjournal.github.io/rj/reference/get_events.html</loc>
   </url>
   <url>
@@ -53,6 +56,9 @@
   </url>
   <url>
     <loc>https://rjournal.github.io/rj/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://rjournal.github.io/rj/reference/scrape.html</loc>
   </url>
   <url>
     <loc>https://rjournal.github.io/rj/reference/summer_games.html</loc>
