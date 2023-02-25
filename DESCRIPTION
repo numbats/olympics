@@ -2,9 +2,9 @@ Package: olympics
 Title: Olympic data from olympic.com
 Version: 0.0.1
 Authors@R: c(
-    person("Shery", "Zhang", email = "huize.zhang@monash.edu", role = c("aut","cre")),
-    person("Xiaoqian", "Wang", email = "Xiaoqian.Wang@monash.edu", role = c("aut")),
-    person("Nuwani", "Palihawadana", email = "Nuwani.KodikaraPalihawadana@monash.edu", role = c("aut")),
+    person("H. Shery", "Zhang", email = "huize.zhang@monash.edu", role = c("aut","cre"), comment = c(ORCID = "0000-0002-7122-1463")),
+    person("Xiaoqian", "Wang", email = "Xiaoqian.Wang@monash.edu", role = c("aut"), comment = c(ORCID = "0000-0003-4827-496X")),
+    person("Nuwani", "Palihawadana", email = "Nuwani.KodikaraPalihawadana@monash.edu", role = c("aut"), comment = c(ORCID = "0009-0008-6395-7797")),
     person("Jayani", "Lakshika", email = "Jayani.PiyadiGamage@monash.edu", role = c("aut"))
   )
 Description: An interface to scrape olympic results from olympic.com and built-in data of 21st century summer and winter game results.  

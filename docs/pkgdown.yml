@@ -2,7 +2,7 @@ pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2023-02-25T02:43Z
+last_built: 2023-02-25T05:34Z
 urls:
   reference: https://rjournal.github.io/rj/reference
   article: https://rjournal.github.io/rj/articles
